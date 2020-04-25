@@ -149,11 +149,11 @@ var TouchIdService = /** @class */ (function () {
      *       })
      *}
      **/
-    TouchIdService.prototype.add = function (key, data, auth) {
+    TouchIdService.prototype.add = function (key, data) {
         var _this = this;
         return new Promise(function (resolve) {
             _this.keychainTouchId
-                .save(key, data, auth)
+                .save(key, data, true)
                 .then(function (res) { return resolve(res); })
                 .catch(function (err) { return console.error('Se ha producido un error en Add', err); });
         });

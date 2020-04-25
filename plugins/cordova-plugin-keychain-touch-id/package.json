@@ -7,8 +7,8 @@
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id",
-    "rawSpec": "https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id",
+    "raw": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git",
+    "rawSpec": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git",
     "saveSpec": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git",
     "fetchSpec": "https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git",
     "gitCommittish": null
@@ -18,7 +18,7 @@
     "/"
   ],
   "_resolved": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git#7ea014f72679403c4e74acb1cc07b524cf085663",
-  "_spec": "https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id",
+  "_spec": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git",
   "_where": "D:\\pocs\\startedcrud-ionic-firestore",
   "author": {
     "name": "S.J.Hoeksma"

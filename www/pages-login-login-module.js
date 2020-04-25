@@ -59,7 +59,7 @@ var LoginPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Inicio de Sesión</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n    <div  text-center>\r\n        <h4 text-center>Iniciar Sección</h4>\r\n      </div>\r\n    \r\n      <form class=\"form\" [formGroup]=\"validations_form\" (ngSubmit)=\"tryLogin(validations_form.value)\">\r\n        <ion-item>\r\n          <ion-label position=\"floating\" color=\"ion-color-dark\">Correo Electronico</ion-label>\r\n          <ion-input type=\"text\" [(ngModel)]=\"correo\" formControlName=\"email\"></ion-input>\r\n        </ion-item>\r\n        <div class=\"validation-errors\">\r\n          <ng-container *ngFor=\"let validation of validation_messages.email\">\r\n            <div class=\"error-message\" *ngIf=\"validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)\">\r\n              {{ validation.message }}\r\n            </div>\r\n          </ng-container>\r\n        </div>\r\n        <ion-item>\r\n          <ion-label position=\"floating\" color=\"ion-color-dark\">Contraseña</ion-label>\r\n          <ion-input type=\"password\" formControlName=\"password\"></ion-input>\r\n        </ion-item>\r\n        <div class=\"validation-errors\">\r\n          <ng-container *ngFor=\"let validation of validation_messages.password\">\r\n            <div class=\"error-message\" *ngIf=\"validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)\">\r\n              {{ validation.message }}\r\n            </div>\r\n          </ng-container>\r\n        </div>\r\n        <ion-button class=\"submit-btn\" expand=\"block\" type=\"submit\" [disabled]=\"!validations_form.valid\" color=\"primary\">Entrar</ion-button>\r\n        <label class=\"error-message\">{{errorMessage}}</label>\r\n\r\n        <ion-item text-center>\r\n            <ion-button expand=\"block\" *ngIf=\"!passReset && validations_form.controls.email.valid\" (click)=\"resetPassword()\">Olvidate tu contraseña <br> {{validations_form.value.email}}</ion-button>\r\n            <p *ngIf=\"passReset\" >Reset enviado. Revisa tu email y sigue las instruciones.</p>    \r\n        </ion-item>\r\n      </form>\r\n        <ion-button (click)=\"showFingerprintAuthDlg()\">TOUCH</ion-button>\r\n        <br>\r\n        <input [(ngModel)]=\"correo\" type=\"text\">\r\n        <ion-button (click)=\"tryLoginTouch(correo)\">Login Touch!!</ion-button>\r\n        <ion-button (click)=\"tryLoginTouch('pepito@gmail.com')\">Login Touch</ion-button>\r\n\r\n      <p class=\"go-to-register\">\r\n      No tienes una Cuenta? <ion-button size=\"small\" (click)=\"goRegisterPage()\">Regístrate.</ion-button>\r\n    </p>\r\n\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Inicio de Sesión</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n    <div  text-center>\r\n        <h4 text-center>Iniciar Sección</h4>\r\n      </div>\r\n    \r\n      <form class=\"form\" [formGroup]=\"validations_form\" (ngSubmit)=\"tryLogin(validations_form.value)\">\r\n        <ion-item>\r\n          <ion-label position=\"floating\" color=\"ion-color-dark\">Correo Electronico</ion-label>\r\n          <ion-input type=\"text\" [(ngModel)]=\"correo\" formControlName=\"email\"></ion-input>\r\n        </ion-item>\r\n        <div class=\"validation-errors\">\r\n          <ng-container *ngFor=\"let validation of validation_messages.email\">\r\n            <div class=\"error-message\" *ngIf=\"validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)\">\r\n              {{ validation.message }}\r\n            </div>\r\n          </ng-container>\r\n        </div>\r\n        <ion-item>\r\n          <ion-label position=\"floating\" color=\"ion-color-dark\">Contraseña</ion-label>\r\n          <ion-input type=\"password\" formControlName=\"password\"></ion-input>\r\n        </ion-item>\r\n        <div class=\"validation-errors\">\r\n          <ng-container *ngFor=\"let validation of validation_messages.password\">\r\n            <div class=\"error-message\" *ngIf=\"validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)\">\r\n              {{ validation.message }}\r\n            </div>\r\n          </ng-container>\r\n        </div>\r\n        <ion-button class=\"submit-btn\" expand=\"block\" type=\"submit\" [disabled]=\"!validations_form.valid\" color=\"primary\">Entrar</ion-button>\r\n        <label class=\"error-message\">{{errorMessage}}</label>\r\n\r\n        <ion-item text-center>\r\n            <ion-button expand=\"block\" *ngIf=\"!passReset && validations_form.controls.email.valid\" (click)=\"resetPassword()\">Olvidate tu contraseña <br> {{validations_form.value.email}}</ion-button>\r\n            <p *ngIf=\"passReset\" >Reset enviado. Revisa tu email y sigue las instruciones.</p>    \r\n        </ion-item>\r\n      </form>\r\n        <ion-button (click)=\"tryLoginTouch()\">Login Touch!!</ion-button>\r\n      <p class=\"go-to-register\">\r\n      No tienes una Cuenta? <ion-button size=\"small\" (click)=\"goRegisterPage()\">Regístrate.</ion-button>\r\n    </p>\r\n\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -91,6 +91,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _ionic_native_fingerprint_aio_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/fingerprint-aio/ngx */ "./node_modules/@ionic-native/fingerprint-aio/ngx/index.js");
 /* harmony import */ var src_app_services_touch_id_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/touch-id.service */ "./src/app/services/touch-id.service.ts");
+/* harmony import */ var _storage_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../storage/storage.service */ "./src/app/pages/storage/storage.service.ts");
+
 
 
 
@@ -99,12 +101,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(authService, formBuilder, router, faio, finger) {
+    function LoginPage(authService, formBuilder, router, faio, finger, sService) {
         this.authService = authService;
         this.formBuilder = formBuilder;
         this.router = router;
         this.faio = faio;
         this.finger = finger;
+        this.sService = sService;
         this.errorMessage = '';
         this.passReset = false;
         this.validation_messages = {
@@ -117,6 +120,7 @@ var LoginPage = /** @class */ (function () {
                 { type: 'minlength', message: 'La contraseña debe tener mas de 5 digitos.' }
             ]
         };
+        this.loadItems();
     }
     LoginPage.prototype.showFingerprintAuthDlg = function () {
         this.faio.show({
@@ -142,9 +146,25 @@ var LoginPage = /** @class */ (function () {
             ])),
         });
     };
+    LoginPage.prototype.loadItems = function () {
+        var _this = this;
+        this.sService.getAll('datos').then(function (items) {
+            _this.items = items;
+            console.log(items[0].email);
+        });
+    };
+    LoginPage.prototype.getIndexId = function () {
+        var _this = this;
+        this.sService.getIndexID('AUTHSTORAGE', 1).then(function (index) {
+            _this.getIndexItems = index;
+            console.log(_this.getIndexItems);
+            alert("Datos del id seleccionado, " + JSON.stringify(_this.getIndexItems));
+        });
+    };
     LoginPage.prototype.get = function (key) {
         var _this = this;
-        key = this.correo;
+        this.getIndexId();
+        key = this.items[0].email;
         this.finger.verify(key)
             .then(function (datos) {
             _this.datoGuardado = datos;
@@ -154,13 +174,13 @@ var LoginPage = /** @class */ (function () {
             console.error("Se ha producido un error al consultar la informaci\u00F3n guardada: " + err);
         });
     };
-    LoginPage.prototype.tryLoginTouch = function (em) {
+    LoginPage.prototype.tryLoginTouch = function () {
         var _this = this;
-        this.finger.verify(em)
+        this.finger.verify(this.items[0].email)
             .then(function (datos) {
             alert('dato guardado' + datos);
             var pass = datos;
-            _this.authService.doLoginTo(em, pass)
+            _this.authService.doLoginTo(_this.items[0].email, pass)
                 .then(function (res) {
                 _this.router.navigate(['/tabs/tab1']);
             }, function (err) {
@@ -200,7 +220,8 @@ var LoginPage = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _ionic_native_fingerprint_aio_ngx__WEBPACK_IMPORTED_MODULE_5__["FingerprintAIO"],
-            src_app_services_touch_id_service__WEBPACK_IMPORTED_MODULE_6__["TouchIdService"]])
+            src_app_services_touch_id_service__WEBPACK_IMPORTED_MODULE_6__["TouchIdService"],
+            _storage_storage_service__WEBPACK_IMPORTED_MODULE_7__["StorageService"]])
     ], LoginPage);
     return LoginPage;
 }());

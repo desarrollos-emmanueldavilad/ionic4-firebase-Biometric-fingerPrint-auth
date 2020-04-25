@@ -1003,7 +1003,6 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            _this.getCurrentUser();
         });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1055,6 +1054,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
 /* harmony import */ var _ionic_native_fingerprint_aio_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/fingerprint-aio/ngx */ "./node_modules/@ionic-native/fingerprint-aio/ngx/index.js");
 /* harmony import */ var _ionic_native_keychain_touch_id_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/keychain-touch-id/ngx */ "./node_modules/@ionic-native/keychain-touch-id/ngx/index.js");
+/* harmony import */ var _pages_storage_storage_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./pages/storage/storage.module */ "./src/app/pages/storage/storage.module.ts");
+
 
 
 
@@ -1090,6 +1091,7 @@ var AppModule = /** @class */ (function () {
                 _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_12__["AngularFirestoreModule"],
                 _angular_fire_auth__WEBPACK_IMPORTED_MODULE_13__["AngularFireAuthModule"],
                 _angular_fire_storage__WEBPACK_IMPORTED_MODULE_14__["AngularFireStorageModule"],
+                _pages_storage_storage_module__WEBPACK_IMPORTED_MODULE_20__["StorageModule"].forRoot(),
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
@@ -1105,6 +1107,274 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/models/config.db.ts":
+/*!*******************************************!*\
+  !*** ./src/app/pages/models/config.db.ts ***!
+  \*******************************************/
+/*! exports provided: dbConfig */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dbConfig", function() { return dbConfig; });
+/**
+ * Initialize all service configurations for Ngx-indexed-db
+ * @param DBconfig
+ * @param default config for the client.
+ */
+var dbConfig = {
+    name: 'AUTHSTORAGE',
+    version: 1,
+    objectStoresMeta: [
+        {
+            store: 'datos',
+            storeConfig: { keyPath: 'id', autoIncrement: true },
+            storeSchema: [
+                { name: 'email', keypath: 'email', options: { unique: false } }
+            ]
+        },
+    ]
+};
+
+
+/***/ }),
+
+/***/ "./src/app/pages/storage/storage.module.ts":
+/*!*************************************************!*\
+  !*** ./src/app/pages/storage/storage.module.ts ***!
+  \*************************************************/
+/*! exports provided: StorageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StorageModule", function() { return StorageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-indexed-db */ "./node_modules/ngx-indexed-db/fesm5/ngx-indexed-db.js");
+/* harmony import */ var _storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./storage.service */ "./src/app/pages/storage/storage.service.ts");
+/* harmony import */ var _models_config_db__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/config.db */ "./src/app/pages/models/config.db.ts");
+
+
+
+
+
+
+var StorageModule = /** @class */ (function () {
+    function StorageModule() {
+    }
+    StorageModule_1 = StorageModule;
+    StorageModule.forRoot = function (configuration) {
+        if (configuration === void 0) { configuration = _models_config_db__WEBPACK_IMPORTED_MODULE_5__["dbConfig"]; }
+        return {
+            ngModule: StorageModule_1,
+            providers: [
+                _storage_service__WEBPACK_IMPORTED_MODULE_4__["StorageService"],
+                ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__["NgxIndexedDBService"],
+                { provide: ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__["CONFIG_TOKEN"], useValue: configuration }
+            ]
+        };
+    };
+    var StorageModule_1;
+    StorageModule = StorageModule_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                ngx_indexed_db__WEBPACK_IMPORTED_MODULE_3__["NgxIndexedDBModule"].forRoot(_models_config_db__WEBPACK_IMPORTED_MODULE_5__["dbConfig"]),
+            ],
+            providers: [_storage_service__WEBPACK_IMPORTED_MODULE_4__["StorageService"]]
+        })
+    ], StorageModule);
+    return StorageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/storage/storage.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/pages/storage/storage.service.ts ***!
+  \**************************************************/
+/*! exports provided: StorageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StorageService", function() { return StorageService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_indexed_db__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-indexed-db */ "./node_modules/ngx-indexed-db/fesm5/ngx-indexed-db.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+
+var StorageService = /** @class */ (function () {
+    function StorageService(platform, dbService) {
+        this.platform = platform;
+        this.dbService = dbService;
+    }
+    /**
+     * Add Method
+     *  @example
+     *   this.Service.addItem('SEGURCAIXA', form.value).then(item => {
+     *  console.log(item);
+     *});
+     **/
+    StorageService.prototype.addItem = function (item) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .add('datos', item)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) { return console.error('Se ha producido un error en Add: ', err); });
+        });
+    };
+    /**
+     * Update Method
+     *  @example
+     *  this.Service.update('SEGURCAIXA', item).then(item => {
+     *   console.log(item)
+     * });
+     **/
+    StorageService.prototype.update = function (dbName, id) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .update(dbName, id)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) {
+                return console.error('Se ha producido un error en Update: ', err);
+            });
+        });
+    };
+    /**
+     * GetAll Method
+     *  @example
+     *   this.Service.getAll('SEGURCAIXA').then(items => {
+     *   this.items = items;
+     * console.log(this.items)
+     * });
+     **/
+    StorageService.prototype.getAll = function (dbName) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .getAll(dbName)
+                .then(function (res) {
+                console.log(res);
+                resolve(res);
+            })
+                .catch(function (err) {
+                return console.error('Se ha producido un error en getAll: ', err);
+            });
+        });
+    };
+    /**
+     * getIndexID Method
+     *  @example
+     *this.Service.getIndexID('SEGURCAIXA', key).then(index => {
+     *     this.getIndexItems = index;
+     *    console.log(this.getIndexItems);
+     *     console.log(${JSON.stringify(this.getIndexItems)});
+     *   });*
+     **/
+    StorageService.prototype.getIndexID = function (dbName, key) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .getByID(dbName, key)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) { return console.log(err); });
+        });
+    };
+    /**
+     * getIndex Method
+     *  @example
+     *this.Service.getIndex('SEGURCAIXA', key, value).then(data => {
+     *    this.infoKey = data;
+     *    console.log(this.infoKey);
+     *  });
+     **/
+    StorageService.prototype.getIndex = function (dbName, key, value) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .getByIndex(dbName, key, value)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) {
+                return console.error('Se ha producido un error en getIndex: ', err);
+            });
+        });
+    };
+    /**
+     * Delete Method
+     *  @example
+     * this.Service.delete('SEGURCAIXA', id).then(item => {
+     *     console.log('Registro eliminado');
+     *   });
+     **/
+    StorageService.prototype.delete = function (dbName, id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.dbService
+                .delete(dbName, id)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) {
+                console.error('Se ha producido un error en getIndexKey: ', err);
+                reject(err);
+            });
+        });
+    };
+    /**
+     * Count Method
+     *  @example
+     *this.Service.count('SEGURCAIXA').then(count => {
+     *      console.log(count);
+     *    });
+     **/
+    StorageService.prototype.count = function (dbName) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .count(dbName)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) { return console.error('Se ha producido un error en Count', err); });
+        });
+    };
+    /**
+     * clearDB Method
+     *  @example
+      *this.Service.clearDB('SEGURCAIXA').then(data => {
+      *      console.log(data);
+      });
+     **/
+    StorageService.prototype.clearDB = function (dbName) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.dbService
+                .clear(dbName)
+                .then(function (res) { return resolve(res); })
+                .catch(function (err) { return console.error('Se ha producido un error en clear', err); });
+        });
+    };
+    StorageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root',
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
+            ngx_indexed_db__WEBPACK_IMPORTED_MODULE_2__["NgxIndexedDBService"]])
+    ], StorageService);
+    return StorageService;
 }());
 
 

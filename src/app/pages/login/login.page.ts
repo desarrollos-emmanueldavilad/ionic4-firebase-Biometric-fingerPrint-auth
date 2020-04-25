@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { TouchIdService } from 'src/app/services/touch-id.service';
+import { StorageService } from '../storage/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -26,14 +27,18 @@ correo: string ;
     ]
   };
   datoGuardado: any;
+  items: any;
+  getIndexItems: any;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private faio: FingerprintAIO ,
-    private finger: TouchIdService
+    private finger: TouchIdService,
+    private sService: StorageService
   ) {
+    this.loadItems();
   }
 
 showFingerprintAuthDlg(){
@@ -62,9 +67,26 @@ showFingerprintAuthDlg(){
     });
   }
 
+  loadItems() {
+    this.sService.getAll('datos').then(items => {
+      this.items = items;
+      console.log(items[0].email)
+    });
+  }
+
+
+  getIndexId() {
+    this.sService.getIndexID('AUTHSTORAGE', 1).then(index => {
+      this.getIndexItems = index;
+      console.log(this.getIndexItems);
+      alert(`Datos del id seleccionado, ${JSON.stringify(this.getIndexItems)}`);
+    });
+  }
+
 
   get(key: string) {
-    key = this.correo;
+    this.getIndexId();
+    key = this.items[0].email;
     this.finger.verify(key)
       .then(datos => {
         this.datoGuardado = datos;
@@ -75,12 +97,12 @@ showFingerprintAuthDlg(){
       });
   }
 
-  tryLoginTouch(em) {
-    this.finger.verify(em)
+  tryLoginTouch() {
+    this.finger.verify(this.items[0].email)
       .then(datos => {
         alert('dato guardado' + datos)
         let pass = datos;
-        this.authService.doLoginTo(em, pass)
+        this.authService.doLoginTo(this.items[0].email, pass)
         .then(res => {
           this.router.navigate(['/tabs/tab1']);
         }, err => {

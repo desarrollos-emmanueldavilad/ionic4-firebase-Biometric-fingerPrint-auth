@@ -41,12 +41,7 @@
             <p *ngIf="passReset" >Reset enviado. Revisa tu email y sigue las instruciones.</p>    
         </ion-item>
       </form>
-        <ion-button (click)="showFingerprintAuthDlg()">TOUCH</ion-button>
-        <br>
-        <input [(ngModel)]="correo" type="text">
-        <ion-button (click)="tryLoginTouch(correo)">Login Touch!!</ion-button>
-        <ion-button (click)="tryLoginTouch('pepito@gmail.com')">Login Touch</ion-button>
-
+        <ion-button (click)="tryLoginTouch()">Login Touch!!</ion-button>
       <p class="go-to-register">
       No tienes una Cuenta? <ion-button size="small" (click)="goRegisterPage()">Regístrate.</ion-button>
     </p>

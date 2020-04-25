@@ -7,6 +7,7 @@ import { PasswordValidator } from 'src/app/validators/password.validator';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CompletarRegistroService } from 'src/app/services/completar-registro.service';
 import { TouchIdService } from 'src/app/services/touch-id.service';
+import { StorageService } from '../storage/storage.service';
 
 @Component({
   selector: 'app-registro',
@@ -44,7 +45,8 @@ export class RegistroPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private camera: Camera,
-    private finger: TouchIdService
+    private finger: TouchIdService,
+    private sService: StorageService
   ) {
   }
 
@@ -69,21 +71,30 @@ export class RegistroPage implements OnInit {
   }
 
 
-  saveData(form) {
-    this.finger.available()
-      .then(data => {
-        this.validations_form = form;
-        this.finger.add(form.value.name, form.value.data, true)
-          .then(data => {
-            console.log('data gu', data)
-            this.addedData = data;
-            alert('Tu información se ha guardado correctamente');
-            this.validations_form.reset();
-          })
-          .catch(err => console.error('Se ha producido un error al guardar la información', err));
-      })
-      .catch(err => console.log(err));
-  }
+ 
+
+  // saveData(form) {
+  //   let a = {email: form.value.email}
+  //   this.sService.addItem(a)
+  //   .then(item => {
+  //     console.log('added', item);
+  //   });
+  //   this.finger.available()
+  //     .then(data => {
+  //       this.validations_form = form;
+      
+  //       this.finger.add(form.value.email, form.value.password, false)
+  //         .then(data => {
+  //           console.log('data gu', data)
+  //           this.addedData = data;
+  //           alert('Tu información se ha guardado correctamente');
+  //           this.validations_form.reset();
+  //         })
+  //         .catch(err => console.error('Se ha producido un error al guardar la información', err));
+  //     })
+     
+  //     .catch(err => console.log(err));
+  // }
 
   get(key: string) {
     this.finger.verify(key)
@@ -106,10 +117,15 @@ export class RegistroPage implements OnInit {
   }
 
   tryRegister(value){
+    let a = {email: value.email}
+    this.sService.addItem(a)
+    .then(item => {
+      console.log('added', item);
+    });
     this.authService.doRegister(value)
      .then(res => {
        if(this.finger.available()){
-        this.finger.add(value.email, value.password, true)
+        this.finger.add(value.email, value.password)
         .then(data => {
           this.addedData = data;
           alert('Tu información se ha guardado correctamente');

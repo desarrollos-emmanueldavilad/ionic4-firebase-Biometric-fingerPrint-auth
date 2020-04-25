@@ -87,7 +87,7 @@
   "cordova-plugin-keychain-touch-id": {
     "source": {
       "type": "registry",
-      "id": "https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id"
+      "id": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git"
     },
     "is_top_level": true,
     "variables": {}

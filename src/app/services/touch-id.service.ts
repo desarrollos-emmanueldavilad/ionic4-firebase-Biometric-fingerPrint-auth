@@ -40,10 +40,10 @@ export class TouchIdService {
    *}
    **/
 
-  public add(key: string, data: string, auth: boolean): Promise<any> {
+  public add(key: string, data: string): Promise<any> {
     return new Promise(resolve => {
       this.keychainTouchId
-        .save(key, data, auth)
+        .save(key, data, true)
         .then(res => resolve(res))
         .catch(err => console.error('Se ha producido un error en Add', err))
     })

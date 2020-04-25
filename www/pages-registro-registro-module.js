@@ -59,7 +59,7 @@ var RegistroPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>registro</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n    <div text-center=\"\">\r\n        <h5>Registro de Inquilinos</h5>\r\n      </div>\r\n\r\n      <form class=\"form\" [formGroup]=\"validations_form\" (ngSubmit)=\"tryRegister(validations_form.value)\">\r\n\r\n      <ion-item>\r\n            <ion-label position=\"floating\" color=\"ion-color-dark\">Correo Electronico</ion-label>\r\n            <ion-input type=\"text\" formControlName=\"email\"></ion-input>\r\n          </ion-item>\r\n          <div class=\"validation-errors\">\r\n            <ng-container *ngFor=\"let validation of validation_messages.email\">\r\n              <div class=\"error-message\"\r\n                   *ngIf=\"validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)\">\r\n                {{ validation.message }}\r\n              </div>\r\n            </ng-container>\r\n          </div>\r\n      \r\n      \r\n          <ion-item>\r\n            <ion-label position=\"floating\" color=\"ion-color-dark\">Contraseña</ion-label>\r\n            <ion-input type=\"password\" formControlName=\"password\"></ion-input>\r\n          </ion-item>\r\n          <div class=\"validation-errors\">\r\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\r\n              <div class=\"error-message\"\r\n                   *ngIf=\"validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)\">\r\n                {{ validation.message }}\r\n              </div>\r\n            </ng-container>\r\n          </div>\r\n          <ion-item>\r\n            <ion-label position=\"floating\" color=\"ion-color-dark\">Confirmar Contraseña</ion-label>\r\n            <ion-input type=\"password\" formControlName=\"confirmPassword\"></ion-input>\r\n          </ion-item>\r\n          <div class=\"validation-errors\">\r\n            <ng-container *ngFor=\"let validation of validation_messages.confirmPassword\">\r\n              <div class=\"error-message\"\r\n                   *ngIf=\"validations_form.get('confirmPassword').hasError(validation.type) && (validations_form.get('confirmPassword').dirty || validations_form.get('confirmPassword').touched)\">\r\n                <label class=\"error-message\">{{validation.message}}</label><br/>\r\n              </div>\r\n            </ng-container>\r\n          </div>\r\n      \r\n          <ion-grid>\r\n            <ion-row>\r\n              <ion-col size=\"12\">\r\n                <div class=\"inner-wrapper\">\r\n                  <ion-label class=\"label label-ios\">\r\n                    <ion-checkbox class=\"check\" formControlName=\"check\" color=\"primary\" checked=\"false\"></ion-checkbox>\r\n                    <p class=\"terminos\"> Haciendo click aquì acepto los terminos y condicione.</p>\r\n      \r\n                  </ion-label>\r\n                </div>\r\n              </ion-col>\r\n            </ion-row>\r\n      \r\n          </ion-grid>\r\n          <ion-button class=\"submit-btn\" expand=\"block\" type=\"submit\" [disabled]=\"!validations_form.valid\">Registrar\r\n          </ion-button>\r\n          <label class=\"error-message\">{{errorMessage}}</label>\r\n          <label class=\"success-message\">{{successMessage}}</label>\r\n        </form>\r\n        <p class=\"go-to-login\">Ya tienes una Cuenta? <a (click)=\"goLoginPage()\">Iniciar Sesión.</a></p>\r\n\r\n    \r\n\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>registro</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n    <div text-center=\"\">\r\n        <h5>Registro de Inquilinos</h5>\r\n      </div>\r\n\r\n      <form class=\"form\" [formGroup]=\"validations_form\" (ngSubmit)=\"tryRegister(validations_form.value)\">\r\n\r\n      <ion-item>\r\n            <ion-label position=\"floating\" color=\"ion-color-dark\">Correo Electronico</ion-label>\r\n            <ion-input type=\"text\" formControlName=\"email\"></ion-input>\r\n          </ion-item>\r\n          <div class=\"validation-errors\">\r\n            <ng-container *ngFor=\"let validation of validation_messages.email\">\r\n              <div class=\"error-message\"\r\n                   *ngIf=\"validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)\">\r\n                {{ validation.message }}\r\n              </div>\r\n            </ng-container>\r\n          </div>\r\n      \r\n      \r\n          <ion-item>\r\n            <ion-label position=\"floating\" color=\"ion-color-dark\">Contraseña</ion-label>\r\n            <ion-input type=\"password\" formControlName=\"password\"></ion-input>\r\n          </ion-item>\r\n          <div class=\"validation-errors\">\r\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\r\n              <div class=\"error-message\"\r\n                   *ngIf=\"validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)\">\r\n                {{ validation.message }}\r\n              </div>\r\n            </ng-container>\r\n          </div>\r\n          <ion-item>\r\n            <ion-label position=\"floating\" color=\"ion-color-dark\">Confirmar Contraseña</ion-label>\r\n            <ion-input type=\"password\" formControlName=\"confirmPassword\"></ion-input>\r\n          </ion-item>\r\n          <div class=\"validation-errors\">\r\n            <ng-container *ngFor=\"let validation of validation_messages.confirmPassword\">\r\n              <div class=\"error-message\"\r\n                   *ngIf=\"validations_form.get('confirmPassword').hasError(validation.type) && (validations_form.get('confirmPassword').dirty || validations_form.get('confirmPassword').touched)\">\r\n                <label class=\"error-message\">{{validation.message}}</label><br/>\r\n              </div>\r\n            </ng-container>\r\n          </div>\r\n      \r\n          <ion-grid>\r\n            <ion-row>\r\n              <ion-col size=\"12\">\r\n                <div class=\"inner-wrapper\">\r\n                  <ion-label class=\"label label-ios\">\r\n                    <ion-checkbox class=\"check\" formControlName=\"check\" color=\"primary\" checked=\"false\"></ion-checkbox>\r\n                    <p class=\"terminos\"> Haciendo click aquì acepto los terminos y condicione.</p>\r\n      \r\n                  </ion-label>\r\n                </div>\r\n              </ion-col>\r\n            </ion-row>\r\n      \r\n          </ion-grid>\r\n          <ion-button class=\"submit-btn\" expand=\"block\" type=\"submit\" [disabled]=\"!validations_form.valid\">Registrar\r\n          </ion-button>\r\n          <label class=\"error-message\">{{errorMessage}}</label>\r\n          <label class=\"success-message\">{{successMessage}}</label>\r\n        </form>\r\n        <p class=\"go-to-login\">Ya tienes una Cuenta? <a (click)=\"goLoginPage()\">Iniciar Sesión.</a></p>\r\n\r\n\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -92,6 +92,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_validators_password_validator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/validators/password.validator */ "./src/app/validators/password.validator.ts");
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
 /* harmony import */ var src_app_services_touch_id_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/touch-id.service */ "./src/app/services/touch-id.service.ts");
+/* harmony import */ var _storage_storage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../storage/storage.service */ "./src/app/pages/storage/storage.service.ts");
+
 
 
 
@@ -101,12 +103,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RegistroPage = /** @class */ (function () {
-    function RegistroPage(authService, formBuilder, router, camera, finger) {
+    function RegistroPage(authService, formBuilder, router, camera, finger, sService) {
         this.authService = authService;
         this.formBuilder = formBuilder;
         this.router = router;
         this.camera = camera;
         this.finger = finger;
+        this.sService = sService;
         this.errorMessage = '';
         this.successMessage = '';
         this.validation_messages = {
@@ -143,22 +146,26 @@ var RegistroPage = /** @class */ (function () {
             check: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
         });
     };
-    RegistroPage.prototype.saveData = function (form) {
-        var _this = this;
-        this.finger.available()
-            .then(function (data) {
-            _this.validations_form = form;
-            _this.finger.add(form.value.name, form.value.data, true)
-                .then(function (data) {
-                console.log('data gu', data);
-                _this.addedData = data;
-                alert('Tu información se ha guardado correctamente');
-                _this.validations_form.reset();
-            })
-                .catch(function (err) { return console.error('Se ha producido un error al guardar la información', err); });
-        })
-            .catch(function (err) { return console.log(err); });
-    };
+    // saveData(form) {
+    //   let a = {email: form.value.email}
+    //   this.sService.addItem(a)
+    //   .then(item => {
+    //     console.log('added', item);
+    //   });
+    //   this.finger.available()
+    //     .then(data => {
+    //       this.validations_form = form;
+    //       this.finger.add(form.value.email, form.value.password, false)
+    //         .then(data => {
+    //           console.log('data gu', data)
+    //           this.addedData = data;
+    //           alert('Tu información se ha guardado correctamente');
+    //           this.validations_form.reset();
+    //         })
+    //         .catch(err => console.error('Se ha producido un error al guardar la información', err));
+    //     })
+    //     .catch(err => console.log(err));
+    // }
     RegistroPage.prototype.get = function (key) {
         var _this = this;
         this.finger.verify(key)
@@ -180,10 +187,15 @@ var RegistroPage = /** @class */ (function () {
     };
     RegistroPage.prototype.tryRegister = function (value) {
         var _this = this;
+        var a = { email: value.email };
+        this.sService.addItem(a)
+            .then(function (item) {
+            console.log('added', item);
+        });
         this.authService.doRegister(value)
             .then(function (res) {
             if (_this.finger.available()) {
-                _this.finger.add(value.email, value.password, true)
+                _this.finger.add(value.email, value.password)
                     .then(function (data) {
                     _this.addedData = data;
                     alert('Tu información se ha guardado correctamente');
@@ -232,7 +244,8 @@ var RegistroPage = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
             _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__["Camera"],
-            src_app_services_touch_id_service__WEBPACK_IMPORTED_MODULE_7__["TouchIdService"]])
+            src_app_services_touch_id_service__WEBPACK_IMPORTED_MODULE_7__["TouchIdService"],
+            _storage_storage_service__WEBPACK_IMPORTED_MODULE_8__["StorageService"]])
     ], RegistroPage);
     return RegistroPage;
 }());

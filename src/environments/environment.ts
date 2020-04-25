@@ -5,7 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    ******************************FIREBASE CONFIG*******************************
+    apiKey: "AIzaSyCWO73o6Dp7aZcmPSuNrIhom0EYM43Cn9s",
+      authDomain: "finger-7db77.firebaseapp.com",
+      databaseURL: "https://finger-7db77.firebaseio.com",
+      projectId: "finger-7db77",
+      storageBucket: "finger-7db77.appspot.com",
+      messagingSenderId: "146051456781",
+      appId: "1:146051456781:web:8b40aab739c25e20a2da44",
+      measurementId: "G-01LF511GX5"
   }
 };
 

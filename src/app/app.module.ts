@@ -19,6 +19,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id/ngx';
+import { StorageModule } from './pages/storage/storage.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -30,6 +31,7 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id/ngx';
     AngularFirestoreModule, // imports firebase/firestore
     AngularFireAuthModule, // imports firebase/auth
     AngularFireStorageModule, // imports firebase/storage],
+    StorageModule.forRoot(),
   ],
   providers: [
     StatusBar,
